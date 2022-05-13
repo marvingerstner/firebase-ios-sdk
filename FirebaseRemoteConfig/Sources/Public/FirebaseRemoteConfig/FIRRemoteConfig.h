@@ -30,6 +30,10 @@ extern NSString *const _Nonnull FIRNamespaceGoogleMobilePlatform NS_SWIFT_NAME(
 extern NSString *const _Nonnull FIRRemoteConfigThrottledEndTimeInSecondsKey NS_SWIFT_NAME(
     RemoteConfigThrottledEndTimeInSecondsKey);
 
+extern @interface FIRConfigUpdateListenerRegistration : NSObject
+- (void) remove;
+@end
+
 /// Indicates whether updated data was successfully fetched.
 typedef NS_ENUM(NSInteger, FIRRemoteConfigFetchStatus) {
   /// Config has never been fetched.
@@ -80,6 +84,12 @@ typedef NS_ENUM(NSInteger, FIRRemoteConfigSource) {
 /// @param error  Error message on failure.
 typedef void (^FIRRemoteConfigFetchCompletion)(FIRRemoteConfigFetchStatus status,
                                                NSError *_Nullable error)
+    NS_SWIFT_UNAVAILABLE("Use Swift's closure syntax instead.");
+
+/// Completion handler invoked by config update methods when they get a response from the server.
+///
+/// @param error  Error message on failure.
+typedef void (^FIRConfigUpdateCompletion)(NSError *_Nullable error)
     NS_SWIFT_UNAVAILABLE("Use Swift's closure syntax instead.");
 
 /// Completion handler invoked by activate method upon completion.
